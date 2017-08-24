@@ -1,0 +1,31 @@
+<p>Home</p>
+<pre>
+Egy alkalmazás megvalósítása amely az adatbázisból termékeket jelenít meg egy listában (termék névvel,
+rövid leírással és árral). A listában minden termékhez tartozzon egy hivatkozás amelyre kattintva a megjelenik
+a termék részletes leírása egy külön oldalon.
+
+Fontos, hogy a a böngészőt ne navigáljuk el, csupán a felhasználó érezze csak azt, hogy egy külön oldalra került.
+
+
+Követelmények
+Az alkalmazást "single page" módon kell megoldani
+Szerveroldali keretrendszer a Laravel legyen
+A kliensoldali (böngésző, JS) keretrendszer az AngularJS legyen
+HTML5 megvalósítás
+A szerveroldal és a kliensoldal között a kezdeti betöltést követően JSON formátummal történjen a kommunikáció aszinkron hívásokkal
+PHP 5.4+ (a Laravel miatt)
+Tetszőlegesen MySQL vagy PostgreSQL adatbázis
+Az adatbázis
+
+Az adatbázist egyetlen "products" tábla teszi ki a következő attribútumokkal
+id
+name
+short_description
+description
+price
+created_at
+updated_at
+deleted_at
+Az adatbázis kialakításához javasolt a Laravel séma generátorát használni. Az updated_at, created_at, deleted_at mezőket a
+Laravel automatikusan tudja kezelni ha az Eloquent ORM-et használjuk.
+</pre>

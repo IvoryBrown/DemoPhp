@@ -1,0 +1,102 @@
+# Example YAML to get you started quickly.
+# Be aware that YAML has indentation based scoping.
+# Code completion support is available so start typing for available options.
+swagger: '2.0'
+
+# This is your document metadata
+info:
+  version: "1.0.0"
+  title: demo
+  description: "Egy alkalmazás megvalósítása amely az adatbázisból termékeket jelenít meg egy listában (termék névvel, rövid leírással és árral). A listában minden termékhez tartozzon egy hivatkozás amelyre kattintva a megjelenik a termék részletes leírása egy külön oldalon."
+
+basePath: /v1
+produces:
+  - application/json 
+  
+# Definitions 
+definitions:
+    ErrorMessage:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        description:
+          type: string
+
+    Product:
+        type: object
+        properties:
+            id:
+                type: string
+                format: byte
+            name:
+                type: string
+            short_description:
+                type: string
+            description:
+                type: string
+            price:
+                type: number
+                format: float
+            created_at:
+                type: string
+                format: date-time
+            updated_at:
+                type: string
+                format: date-time
+            deleted_at:
+                type: string
+                format: date-time
+      
+tags:
+  - name: Products            
+# Describe your paths here
+paths:
+  # This is a path endpoint. Change it.
+  /products:
+    # This is a HTTP operation
+    get:
+      tags: 
+        - Products
+      # Describe this verb here. Note: you can use markdown
+      description: |
+        Gets `Product` objects.
+      # Expected responses for this operation:
+      responses:
+        # Response code
+        200:
+          description: Successful response
+          # A schema describing your response object.
+          # Use JSON Schema format
+          schema:
+            title: ArrayOfProducts
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+              
+  /products/{id}:
+    parameters:
+      - name: id
+        in: path
+        description: Id of the product.
+        required: true
+        type: number
+        format: float
+    get:
+      tags: 
+        - Products
+      description: |
+        Gets one `Product` objects identified by ID.
+      responses:
+        404:
+          description: Object not found
+          schema:
+            $ref: '#/definitions/ErrorMessage'
+        # Response code
+        200:
+          description: Successful response
+          # A schema describing your response object.
+          # Use JSON Schema format
+          schema:
+            $ref: '#/definitions/Product'
